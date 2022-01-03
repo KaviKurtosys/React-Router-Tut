@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-
-
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function Shop() {
   useEffect( () => {
@@ -13,7 +12,7 @@ function Shop() {
   const fectchItems = async () => {
     const data = await fetch('https://pokeapi.co/api/v2/pokemon');
     const items = await data.json();
-    console.log(items.results)
+    // console.log(items.results)
     setItems(items.results);
   }
 
@@ -21,7 +20,9 @@ function Shop() {
     <div>
       { 
         items.map(item => (
-          <h1 key={item.name}>{item.name}</h1>
+          <h1 key={item.name}>
+            <Link to={`/shop/${item.name}`}> {item.name} </Link>
+          </h1>
         ))
       }
     </div>
